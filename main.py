@@ -61,8 +61,8 @@ def start():
     except ValueError as ve:
         print("[INVALID LITERALS]:Please type in Digits!")
 
-
-start()
+if __name__=='__main__':
+    start()
 
 cur.close()
 con.close()

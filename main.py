@@ -1,5 +1,5 @@
 ''' 
-    In this file, I will be demonstrating a login program(console) using the sqlite
+    In this program, I will be demonstrating a login program(console) using the sqlite
     database, We'll take the user name and password for now, since I have been learning sqlite today
 
 '''
@@ -12,6 +12,7 @@ today = date.today()
 now = datetime.now()
 line = '^'*60
 emp = Employee()
+
 
 def start():
     choice = 0
@@ -37,7 +38,6 @@ def start():
     except ValueError as ve:
         print("[INVALID LITERALS]:Please type in Digits!")
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     start()
-
-

@@ -1,4 +1,4 @@
-# printing lists without the square brackets
+# printing lists without the square brackets (using the unpack operator)
 lst = ['People', 'man', 1, ['honda', 'toyota', 'venus']]
 
 print(f'The list before any formating: \n{lst}')
@@ -11,7 +11,7 @@ print(f'\nNow, let\'s work with sets')
 st = ('Nokwanda', 'Celiwe', 'Fakazile', 'Phelelile')
 print(f'set before any formating: {st}')
 print(f'reverse the set: {st[::-1]}')
-print(f'Unpacke the set using the unpack construct:  ', *st)
+print(f'Unpack the set using the unpack construct:  ', *st)
 
 # Now, let's take a look back into dictionaries
 print(f'\nNow, let\'s take a look-back into dictionaries\n\

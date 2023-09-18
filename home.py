@@ -4,6 +4,7 @@ import sqlite3
 import logging
 from products import Product
 import sys
+from employee import Employee
 
 today = date.today()
 curr_time = datetime.now()
@@ -12,6 +13,7 @@ real_time = f'{curr_time.hour}:{curr_time.minute}:{curr_time.second}'
 con = sqlite3.connect('main.db')
 cur = con.cursor()
 product = Product()
+employee = Employee()
 
 
 def start():
@@ -23,7 +25,22 @@ def start():
     elif choice == 2:
         prodFunction()
     elif choice == 3:
-        pass
+        emp_choice = int(input(f'{line}\n\t[WELCOME ADMINISTRATOR] \n{line}\nChoose what to do below,\
+              \n1 --- Display Eployees\n2 --- Find employee\n3 --- Update Employee\n4 --- Delete Employee\n5 --- Home\n$--> '))
+        if emp_choice == 1:
+            employee.displayAllEmployees()
+        elif emp_choice == 2:
+            employee.findEmployee()
+        elif emp_choice == 3:
+            # employee.updateEmployee()
+            pass
+        elif emp_choice == 4:
+            # employee.removeEmployee()
+            pass
+        elif emp_choice == 5:
+            start()
+        else:
+            print('[ERROR]: Wrong user input! (choose from 1 - 5)')
     elif choice == 0:
         pass
     else:

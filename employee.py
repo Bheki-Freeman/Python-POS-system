@@ -1,8 +1,11 @@
 import sqlite3
 from getpass import getpass
+from datetime import date
+
 con = sqlite3.connect('main.db')
 cur = con.cursor()
-from datetime import date
+line = '^'*60
+
 
 
 class Employee():
@@ -50,3 +53,29 @@ class Employee():
             return False
         else:
             return True
+
+    def displayAllEmployees(self):
+        try:
+            sql = 'SELECT empcode, empname, gender, phone, jobtitle, department, datejoined FROM users'
+            print(f'\n\t[AVAILABLE EMPLOYEES]\n{line}')         
+            for row in cur.execute(sql).fetchall():
+                empcode, empname, gender, phone, jobtitle, department, datejoined = row
+                print('{:<5} {:<5} {:<5} {:<5} {:<5} {:<5} {:<5}'.format(empcode, empname, gender,\
+                        phone, jobtitle, department, datejoined))
+        except ValueError as ve:
+            print(ve)
+    def findEmployee(self):
+        try:
+            empcode = input('Enter employee Code to search: ')
+            sql = f"SELECT * FROM users WHERE empcode='{empcode}'"
+            result = cur.execute(sql).fetchall()
+            if not result:
+                print('[ERROR]:Employee Code NOT Found!')
+            else:
+                for row in result:
+                    empcode, empname, gender, phone, jobtitle, department, datejoined, userpassword = row
+                    print('{:<5} {:<5} {:<5} {:<5} {:<5} {:<5} {:<5}'.format(empcode, empname, gender,\
+                            phone, jobtitle, department, datejoined, userpassword))
+        except ValueError as ve:
+            print(ve)
+

@@ -38,7 +38,7 @@ class Product():
         result = cur.execute(sql).fetchall()
         for row in result:
             skucode, prodname, price, desc, quantity = row
-            print('{:<5} {:<10} {:<5} {:<20} {:<5}'.format(skucode, prodname, price, desc, quantity))
+            print(f'{skucode:6}  {prodname:20}  {price:5}  {desc:30}  {quantity:4}') #better formatting
 
     def getProduct(self):
         sku = int(input('Enter skucode to find: '))

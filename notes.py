@@ -28,3 +28,12 @@ if word in oxford_dictionary:
     print(oxford_dictionary[word])
 else:
     print(f'{word} Not found!')
+#################################################################
+#################################################################
+
+################## Updating Logic ###############################
+#Enter emp code: (user types in emp code)
+#print emp details 
+#take user input for values to edit
+#save data taken from user and send it to database
+#Done!

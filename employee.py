@@ -60,8 +60,7 @@ class Employee():
             print(f'\n\t[AVAILABLE EMPLOYEES]\n{line}')         
             for row in cur.execute(sql).fetchall():
                 empcode, empname, gender, phone, jobtitle, department, datejoined = row
-                print('{:<5} {:<5} {:<5} {:<5} {:<5} {:<5} {:<5}'.format(empcode, empname, gender,\
-                        phone, jobtitle, department, datejoined))
+                print(f'{empcode:5}  {empname:12}  {gender:2}  {phone:12} {jobtitle:15}  {department:13} {datejoined:10}')
         except ValueError as ve:
             print(ve)
     def findEmployee(self):
@@ -76,6 +75,40 @@ class Employee():
                     empcode, empname, gender, phone, jobtitle, department, datejoined, userpassword = row
                     print('{:<5} {:<5} {:<5} {:<5} {:<5} {:<5} {:<5}'.format(empcode, empname, gender,\
                             phone, jobtitle, department, datejoined, userpassword))
+        except ValueError as ve:
+            print(ve)
+    def updateEmployee(self):
+        try:
+            empcode = input('Type in Employee Code to update: ')
+            sql = f'SELECT empcode, empname, gender, phone, jobtitle, department, datejoined FROM users WHERE empcode="{empcode}"'
+            result = cur.execute(sql).fetchall()
+            if not result:
+                print('[ERROR]: Employee Code NOT Found!')
+            else:
+                for row in result:
+                    empcode, empname, gender, phone, jobtitle, department, datejoined = row
+                    print(f'{empcode:5}  {empname:10}  {gender:4}  {phone:10} {jobtitle:10}  {department:10}  {datejoined:10}')
+                    code = input(f'Type Emp code [{empcode}]: ')
+                    name = input(f'Typen emp name [{empname}]: ')
+                    gen = input(f'Type new gender [{gender}]: ')
+                    job = input(f'Type new Job title [{jobtitle}]: ')
+                    dept = input(f'Type new department [{department}]: ')
+                    sqls = f"UPDATE users set empcode='{code}', empname='{name}', gender='{gen}', jobtitle='{job}', department='{dept}' WHERE empcode='{empcode}'"
+                    cur.execute(sqls)
+                    con.commit()
+                    print(f'Employee {name} succesfully updated!')
+                
+        except ValueError as ve:
+            print(ve)
+    def removeEmployee(self):
+        try:
+            empcode = input('Enter empcode to delete: ')
+            sql = f"DELETE FROM users WHERE empcode='{empcode}'"
+            result = cur.execute(sql)
+            if not result:
+                print('[ERROR]: Wrong Emp Code!')
+            else:
+                print(f'Employee {empcode} successfully [DELETED]!')
         except ValueError as ve:
             print(ve)
 
